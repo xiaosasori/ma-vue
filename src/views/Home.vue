@@ -1,18 +1,23 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <track>
+      <button eventCategory="Checkout" eventAction="Button Click" eventLabel="Sidebar" eventValue="$30">TrackButton</button>
+    </track>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import Track from '@/components/Track.vue'
 
 export default {
   name: 'home',
   components: {
-    HelloWorld
-  }
+    Track
+  },
+  methods: {
+    onClick(e) {
+      
+    }
+  },
 }
 </script>

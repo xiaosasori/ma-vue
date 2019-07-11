@@ -1,5 +1,13 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <Reactive/>
   </div>
 </template>
+<script>
+import Reactive from '@/components/Reactive'
+
+export default {
+  name: 'about',
+  components: {Reactive}
+}
+</script>

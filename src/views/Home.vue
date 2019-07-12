@@ -1,11 +1,5 @@
 <template>
   <div class="home">
-    <!-- <h1 v-color="['red','gold','pink','blue']">Hello</h1>
-    <h1 v-color:fast.underline="['red','gold','pink','blue']">Hello</h1>
-    <FormTest /> -->
-    <track>
-      <button eventCategory="Checkout" eventAction="Button Click" eventLabel="Sidebar" eventValue="$30">TrackButton</button>
-    </track>
     <ReadFile />
   </div>
 </template>

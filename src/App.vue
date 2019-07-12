@@ -16,4 +16,17 @@
   text-align: center;
   color: #2c3e50;
 }
+<<<<<<< HEAD
+=======
+#nav {
+  padding: 30px;
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
+}
+>>>>>>> 7923da80e1c4bf26603db9192353668ae3af3991
 </style>

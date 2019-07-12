@@ -3,14 +3,10 @@
     <!-- <h1 v-color="['red','gold','pink','blue']">Hello</h1>
     <h1 v-color:fast.underline="['red','gold','pink','blue']">Hello</h1>
     <FormTest /> -->
-    <div class="dropper">
-    <input
-      type="file"
-      @change="uploadImages($event.target.files)"
-      accept="image/*"
-    />
-    <span>Drag files here!</span>
-</div>
+    <track>
+      <button eventCategory="Checkout" eventAction="Button Click" eventLabel="Sidebar" eventValue="$30">TrackButton</button>
+    </track>
+    <ReadFile />
   </div>
 </template>
 
@@ -18,9 +14,11 @@
 // @ is an alias to /src
 import FormMaterial from '@/components/FormMaterial'
 import FormTest from '@/components/FormTest'
+import ReadFile from '@/components/ReadFile.vue'
+
 export default {
   name: 'home',
-  components: {FormTest},
+  components: {FormTest, ReadFile},
   mounted(){
     this.$http.get('https://jsonplaceholder.typicode.com/todos/1').then(res => console.log(res.body))
   },

@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+<<<<<<< HEAD
 import VueResource from 'vue-resource'
 Vue.use(VueResource);
 // axios
@@ -39,6 +40,8 @@ Vue.directive('color', function(el,binding){
     if(i===colors.length) i = 0
   },speed)
 })
+=======
+>>>>>>> 7923da80e1c4bf26603db9192353668ae3af3991
 Vue.config.productionTip = false
 
 new Vue({

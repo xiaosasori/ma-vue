@@ -1,5 +1,5 @@
 {
-  "name": "playground",
+  "name": "vue-playground",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,11 +7,27 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "axios": "^0.18.0",
+    "buefy": "^0.7.5",
     "core-js": "^2.6.5",
+    "rxjs": "^6.5.1",
     "vue": "^2.6.10",
+    "vue-axios": "^2.1.4",
+    "vue-resource": "^1.5.1",
     "vue-router": "^3.0.3",
+    "vue-rx": "^6.1.0",
+    "vuelidate": "^0.7.4",
     "vuex": "^3.0.1"
   },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ],
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.9.0",
     "@vue/cli-service": "^3.9.0",

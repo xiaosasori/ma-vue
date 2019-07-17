@@ -30,11 +30,16 @@ export default {
     };
   },
   mounted() {
-		// watch counter state
+		// 3. watch counter state
     this.$watch(
       "$refs.child.counter",
       (new_value, old_value) => (this.counter = new_value)
     );
+
+    // clear out event listener
+    this.$on('hook:beforeDestroy', () => {
+      // thidPartyPlugin.destroy()
+    })
   }
 };
 </script>

@@ -18,8 +18,25 @@ export default {
 	},
 	methods: {
 		selectedFile(e) {
-			console.log(this.$refs.myFile.files[0])
-			console.log(e.target.files[0])
+			const file = e.target.files[0]
+			console.log(file.type)
+			if (!file) return
+
+			let reader = new FileReader()
+			reader.readAsText(file, 'UTF-8')
+			reader.onload = e => {
+				if (file.type === 'application/json'){
+					try {
+          	this.cats = JSON.parse(text);
+        	} catch(e) {
+          	alert("Sorry, your file doesn't appear to be valid JSON data.");
+        	}
+
+				}
+				this.text = file.type === 'application/json' ? 
+					JSON.parse(e.target.result) : e.target.result
+			}
+			reader.onerror = e => console.log(e)
 		}
 	},
 };

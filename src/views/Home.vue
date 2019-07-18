@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <ReadFile />
+    <Parent />
   </div>
 </template>
 
@@ -9,10 +10,10 @@
 import FormMaterial from '@/components/FormMaterial'
 import FormTest from '@/components/FormTest'
 import ReadFile from '@/components/ReadFile.vue'
-
+import Parent from '@/components/Parent'
 export default {
   name: 'home',
-  components: {FormTest, ReadFile},
+  components: {FormTest, ReadFile, Parent},
   mounted(){
     this.$http.get('https://jsonplaceholder.typicode.com/todos/1').then(res => console.log(res.body))
   },

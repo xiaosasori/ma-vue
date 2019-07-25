@@ -9,7 +9,7 @@
       label(for="email") Email: 
       input(name="email" type="email" v-model="$v.email.$model")
       p.error(v-if="!$v.email.required") This field is required
-      p.error(v-if="!$v.email.email") Must be email
+      p.error(v-if="!$v.email.email" id="error-email") Must be email
     section
       label(for="password") Password: 
       input(name="password" type="password" v-model="$v.password.$model")

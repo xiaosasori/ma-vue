@@ -2,6 +2,7 @@
   <div class="home">
     <ReadFile />
     <BaseForm />
+    <BaseButton theme="primary" />
   </div>
 </template>
 
@@ -11,10 +12,11 @@ import FormMaterial from '@/components/FormMaterial'
 import FormTest from '@/components/FormTest'
 import ReadFile from '@/components/ReadFile.vue'
 import BaseForm from '@/components/BaseForm'
+import BaseButton from '@/components/BaseButton'
 
 export default {
   name: 'home',
-  components: {FormTest, ReadFile, BaseForm},
+  components: {FormTest, ReadFile, BaseForm, BaseButton},
   mounted(){
     this.$http.get('https://jsonplaceholder.typicode.com/todos/1').then(res => console.log(res.body))
   },

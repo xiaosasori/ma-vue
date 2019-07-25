@@ -18,6 +18,8 @@
 		<!-- 4 -->
 		<div>
 			<Child @hook:created="doSomething" />
+      <!-- Set state when slot is mounted -->
+      <slot v-bind = "counter = false" /> 
 		</div>
   </div>
 </template>
@@ -40,6 +42,16 @@ export default {
     this.$on('hook:beforeDestroy', () => {
       // thidPartyPlugin.destroy()
     })
+    // Event between components: component 2
+    this.$root.$on('finishLoading', data => {
+        console.log(data);
+    });
+  },
+  methods: {
+    // Event between components: component 1
+    finishLoading() {
+      this.$root.$emit('finishLoading', data)
+    }
   }
 };
 </script>

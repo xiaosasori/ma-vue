@@ -1,7 +1,8 @@
 <template>
   <div class="home">
-    <ReadFile />
-    <BaseForm />
+    <!-- <ReadFile />
+    <BaseForm /> -->
+    <Parent />
   </div>
 </template>
 
@@ -11,10 +12,11 @@ import FormMaterial from '@/components/FormMaterial'
 import FormTest from '@/components/FormTest'
 import ReadFile from '@/components/ReadFile.vue'
 import BaseForm from '@/components/BaseForm'
+import Parent from '@/components/Parent'
 
 export default {
   name: 'home',
-  components: {FormTest, ReadFile, BaseForm},
+  components: {FormTest, ReadFile, BaseForm, Parent},
   mounted(){
     this.$http.get('https://jsonplaceholder.typicode.com/todos/1').then(res => console.log(res.body))
   },

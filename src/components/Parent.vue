@@ -13,7 +13,7 @@
                 <footer>footer</footer>
             </template>
         </Child>
-        <Child2 @counter="loading = $event" />
+        <Child2 ref="child2" @counter="loading = $event" />
     </div>
 </template>
 

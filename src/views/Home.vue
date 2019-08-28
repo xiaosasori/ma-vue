@@ -5,10 +5,10 @@
     <Parent ref="parent" />
     <table style="background-color:blue">
       <th>
-        <td style="background-color:red" v-click-outside="onClickOutside" @contextmenu.prevent="$refs.ctx.open">
+        <td style="background-color:red" @contextmenu.prevent="$refs.ctx.open">
           Hello
         </td>
-        <td style="background-color:green" v-click-outside="onClickOutside" @contextmenu.prevent="$refs.ctx.open">
+        <td style="background-color:green" @contextmenu.prevent="$refs.ctx.open">
           td2
         </td>
       </th>

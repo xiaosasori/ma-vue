@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <div v-on="$listeners" @click="bb">
+        <p @click="bubble">Bubble</p>
         <button @click="test">Click</button>
     </div>
 </template>
@@ -11,6 +12,12 @@ export default {
         loading: false
     }),
     methods: {
+      bb() {
+        console.log('bb')
+      },
+        bubble() {
+          console.log('buble child2')
+        },
         test() {
             this.$emit('counter', true)
         }

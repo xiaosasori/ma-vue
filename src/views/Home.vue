@@ -3,6 +3,7 @@
     <!-- <ReadFile />
     <BaseForm /> -->
     <Parent ref="parent" />
+    <zoom-in />
     <table style="background-color:blue">
       <th>
         <td style="background-color:red" @contextmenu.prevent="$refs.ctx.open">
@@ -13,6 +14,9 @@
         </td>
       </th>
     </table>
+    <div class="div" @mousewheel.prevent="onMouseWheel">
+
+    </div>
     <context-menu ref="ctx">
       <ul>
         <li>Menu 1</li>
@@ -32,13 +36,14 @@ import BaseForm from '@/components/BaseForm'
 import Parent from '@/components/Parent'
 import ContextMenu from '@/components/contextmenu/context-menu'
 import vClickOutside from 'v-click-outside'
+import ZoomIn from '@/components/Base/ZoomIn'
 
 export default {
   name: 'home',
   directives: {
       clickOutside: vClickOutside.directive
   },
-  components: {FormTest, ReadFile, BaseForm, Parent, ContextMenu},
+  components: {FormTest, ReadFile, BaseForm, Parent, ContextMenu, ZoomIn},
   mounted(){
     this.$http.get('https://jsonplaceholder.typicode.com/todos/1').then(res => console.log(res.body))
     console.log(this.$refs.parent.$refs.child2)
@@ -75,5 +80,11 @@ input {
   height: 30vh;
   position: absolute;
   opacity: 0;
+}
+.div {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  background-color: green;
 }
 </style>

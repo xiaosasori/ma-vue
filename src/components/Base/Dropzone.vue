@@ -21,8 +21,10 @@
       ref="input"
     )
     div.wrapper.d-flex
-      div.content(v-for="(img, ind) in files" :key="ind")
-        v-img.mx-1(width="100" contain :src="img")
+      div.content(v-for="(file, ind) in files" :key="ind")
+        v-img.mx-1(v-if="file.type.includes('image')" width="100" contain :src="file.url")
+        v-icon.mx-1.icon(v-else x-large) insert_drive_file
+        p {{file.name}}
         v-btn(outline color="error" @click.stop="remove(ind)") Remove
 </template>
 
@@ -43,12 +45,17 @@ export default {
     accept: {
       type: String,
       default: '*'
+    },
+    maxFiles: {
+      type: Number,
+      default: null
     }
   },
   methods: {
     remove (index) {
       this.files.splice(index, 1)
       this.$emit('remove', index)
+      this.resetInput()
     },
     onChange (files) {
       const filesAccept = []
@@ -64,7 +71,7 @@ export default {
     receiveFiles (files) {
       this.$emit('select', files)
       for (let file of files) {
-        this.files.push(URL.createObjectURL(file))
+        this.files.push({url: URL.createObjectURL(file), type: file.type, name: file.name})
       }
     },
     resetInput () {
@@ -85,10 +92,15 @@ export default {
   top -8px
   transition background-color .2s
 .wrapper
-  align-items baseline
-  flex-direction row wrap
+  align-items flex-end
+  flex-flow row wrap
   .content
     flex 0 0 100px !important
+  p
+    text-overflow ellipsis
+    width 100px
+    overflow hidden
+    white-space nowrap
 input.image-input
   opacity 0
   position absolute
@@ -108,4 +120,7 @@ input.image-input
   top 50%
   left 0
   -webkit-transform translateY(-50%)
+.icon
+  width 100px
+  height 100px
 </style>

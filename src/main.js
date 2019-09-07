@@ -2,7 +2,6 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
 // axios
@@ -11,7 +10,8 @@ Vue.use(VueResource)
 // Vue.use(VueAxios, axios)
 // Buefy
 import Buefy from 'buefy'
-import 'buefy/dist/buefy.css'
+// import 'buefy/dist/buefy.css'
+import 'bulma/css/bulma.css'
 Vue.use(Buefy)
 //vuelidate
 import Vuelidate from 'vuelidate'

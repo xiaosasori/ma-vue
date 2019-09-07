@@ -1,36 +1,31 @@
 <template>
   <div class="home">
-<<<<<<< HEAD
     <ReadFile />
     <BaseForm />
     <BaseButton theme="primary" />
-=======
-    <!-- <ReadFile />
-    <BaseForm /> -->
-    <Parent />
->>>>>>> 2a43a4dbf8813c8f8e8020c1af93926a25656012
+    <h1 class="has-text-white is-uppercase">ầ</h1>
+    <button class="button is-primary">afg</button>
+    <b-button type="is-link">buefy</b-button>
+    <base-checkbox val="t1" name="t" label="checkbox" v-model="selected" value="1" />
+    <base-checkbox val="t2" name="t" label="checkbox" v-model="selected" value="2" />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import BaseCheckbox from '@/components/BaseComponents/BaseCheckbox'
 import FormMaterial from '@/components/FormMaterial'
 import FormTest from '@/components/FormTest'
 import ReadFile from '@/components/ReadFile.vue'
 import BaseForm from '@/components/BaseForm'
-<<<<<<< HEAD
 import BaseButton from '@/components/BaseButton'
 
 export default {
   name: 'home',
-  components: {FormTest, ReadFile, BaseForm, BaseButton},
-=======
-import Parent from '@/components/Parent'
-
-export default {
-  name: 'home',
-  components: {FormTest, ReadFile, BaseForm, Parent},
->>>>>>> 2a43a4dbf8813c8f8e8020c1af93926a25656012
+  data: () => ({
+    selected: []
+  }),
+  components: {FormTest, ReadFile, BaseForm, BaseButton, BaseCheckbox},
   mounted(){
     this.$http.get('https://jsonplaceholder.typicode.com/todos/1').then(res => console.log(res.body))
   },

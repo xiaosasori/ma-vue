@@ -13,7 +13,7 @@
                 <footer>footer</footer>
             </template>
         </Child>
-        <Child2 @counter="loading = $event" />
+        <Child2 @click="bubble" ref="child2" @counter="loading = $event" />
     </div>
 </template>
 
@@ -24,6 +24,11 @@ export default {
     data: () => ({
         loading: false
     }),
+    methods: {
+      bubble() {
+        console.log('parent')
+      }
+    },
     components: {
         Child, Child2
     },

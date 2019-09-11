@@ -14,7 +14,7 @@
         </td>
       </th>
     </table>
-    <div class="div" @mousewheel.prevent="onMouseWheel">
+    <div class="div" ref="test" @mousewheel.prevent="onMouseWheel">
 
     </div>
     <context-menu ref="ctx">
@@ -36,20 +36,24 @@ import ReadFile from '@/components/ReadFile.vue'
 import BaseForm from '@/components/BaseForm'
 import Parent from '@/components/Parent'
 import ContextMenu from '@/components/contextmenu/context-menu'
-import vClickOutside from 'v-click-outside'
 import ZoomIn from '@/components/Base/ZoomIn'
 
 export default {
   name: 'home',
-  directives: {
-      clickOutside: vClickOutside.directive
-  },
   components: {FormTest, ReadFile, BaseForm, Parent, ContextMenu, ZoomIn},
   mounted(){
     this.$http.get('https://jsonplaceholder.typicode.com/todos/1').then(res => console.log(res.body))
     console.log(this.$refs.parent.$refs.child2)
+    this.$refs.test.addEventListener('click', this.test)
   },
   methods: {
+    onMouseWheel(e) {
+      console.log(e)
+    },
+    test() {
+      console.log('test')
+      console.log()
+    },
     close() {
       console.log('right click')
       this.$refs.ctx.ctxVisible = false

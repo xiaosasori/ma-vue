@@ -20,6 +20,7 @@
     <button @click="change4">4</button>
     <button @click="check">Check</button>
     <div class="div" @mousewheel.prevent="onMouseWheel">
+    <div class="div" ref="test" @mousewheel.prevent="onMouseWheel">
 
     </div>
     <context-menu ref="ctx">
@@ -34,6 +35,7 @@
 
 <script>
 // @ is an alias to /src
+import BaseCheckbox from '@/components/BaseComponents/BaseCheckbox'
 import FormMaterial from '@/components/FormMaterial'
 import FormTest from '@/components/FormTest'
 import ReadFile from '@/components/ReadFile.vue'
@@ -59,8 +61,17 @@ export default {
   mounted(){
     changeTracker.track(this.test)
     this.$http.get('https://jsonplaceholder.typicode.com/todos/1').then(res => console.log('data', res.data))
+    console.log(this.$refs.parent.$refs.child2)
+    this.$refs.test.addEventListener('click', this.test)
   },
   methods: {
+    onMouseWheel(e) {
+      console.log(e)
+    },
+    test() {
+      console.log('test')
+      console.log()
+    },
     close() {
       console.log('right click')
       this.$refs.ctx.ctxVisible = false

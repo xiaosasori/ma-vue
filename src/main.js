@@ -10,7 +10,8 @@ Vue.prototype.$http = axios
 // Vue.use(VueAxios, axios)
 // Buefy
 import Buefy from 'buefy'
-import 'buefy/dist/buefy.css'
+// import 'buefy/dist/buefy.css'
+import 'bulma/css/bulma.css'
 Vue.use(Buefy)
 //vuelidate
 import Vuelidate from 'vuelidate'

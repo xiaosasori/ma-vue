@@ -21,6 +21,7 @@
       <!-- Set state when slot is mounted -->
       <slot v-bind = "counter = false" /> 
 		</div>
+    <!-- reset when logou --> location.reload()
   </div>
 </template>
 
@@ -30,6 +31,22 @@ export default {
     return {
       counter: 0
     };
+  },
+  created() {
+    const userString = localStorage.getItem('user')
+    if(userString) {
+      const userData = JSN.parse(userString)
+      this.$store.commit('SEU_USER_DATA', userData)
+    }
+    axios.interceptors.response.use(
+      response => response,
+      error => {
+        if(error.response.status === 401) {
+          this.$store.dispatch('logout')
+        }
+        return Promise.reject(error)
+      }
+    )
   },
   mounted() {
 		// 3. watch counter state

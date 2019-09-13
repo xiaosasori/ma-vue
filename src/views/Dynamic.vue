@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import BaseInput from '@/components/BaseInput'
+import BaseInput from '@/components/BaseComponents/BaseInput'
 import Test from '@/components/Test'
 export default {
     data: () => ({

@@ -18,6 +18,10 @@ export default new Router({
       component: () => import('./views/Dynamic.vue')
     },
     {
+      path: '/cv',
+      component: () => import('./views/html/bussiness.vue')
+    },
+    {
       path: '/about',
       component: () => import('./views/About.vue')
     }

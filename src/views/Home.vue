@@ -14,6 +14,11 @@
         </td>
       </th>
     </table>
+    <button @click="change1">1</button>
+    <button @click="change2">2</button>
+    <button @click="change3">3</button>
+    <button @click="change4">4</button>
+    <button @click="check">Check</button>
     <div class="div" @mousewheel.prevent="onMouseWheel">
 
     </div>
@@ -35,29 +40,52 @@ import ReadFile from '@/components/ReadFile.vue'
 import BaseForm from '@/components/BaseForm'
 import Parent from '@/components/Parent'
 import ContextMenu from '@/components/contextmenu/context-menu'
-import vClickOutside from 'v-click-outside'
 import ZoomIn from '@/components/Base/ZoomIn'
-
+import {changeTracker} from '@/services/utils'
 export default {
   name: 'home',
-  directives: {
-      clickOutside: vClickOutside.directive
-  },
+  data: () => ({
+    test: {
+      a: 1,
+      b: 1,
+      c: 1,
+      d: {
+        e: 1,
+        f: 2
+      }
+    }
+  }),
   components: {FormTest, ReadFile, BaseForm, Parent, ContextMenu, ZoomIn},
   mounted(){
-    this.$http.get('https://jsonplaceholder.typicode.com/todos/1').then(res => console.log(res.body))
-    console.log(this.$refs.parent.$refs.child2)
+    changeTracker.track(this.test)
+    this.$http.get('https://jsonplaceholder.typicode.com/todos/1').then(res => console.log('data', res.data))
   },
   methods: {
     close() {
       console.log('right click')
       this.$refs.ctx.ctxVisible = false
     },
-    onClickOutside(event, el) {
-      console.log('click outside', el)
-    },
     uploadImages(e){
       console.log(e)
+    },
+    check() {
+      console.log(changeTracker.changed(this.test))
+    },
+    change1() {
+      this.test.a++
+      console.log(this.test)
+    },
+    change2() {
+      this.test.b++
+      console.log(this.test)
+    },
+    change3() {
+      this.test.c++
+      console.log(this.test)
+    },
+    change4() {
+      this.test.d.e++
+      console.log(this.test)
     }
   }
 }

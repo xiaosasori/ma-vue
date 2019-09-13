@@ -1,12 +1,11 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import store from './store'
+import store from './store/'
 
-import VueResource from 'vue-resource'
-Vue.use(VueResource)
 // axios
-// import axios from 'axios'
+import axios from 'axios'
+Vue.prototype.$http = axios
 // import VueAxios from 'vue-axios'
 // Vue.use(VueAxios, axios)
 // Buefy

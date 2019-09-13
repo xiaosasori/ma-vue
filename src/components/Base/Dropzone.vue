@@ -58,14 +58,19 @@ export default {
       this.resetInput()
     },
     onChange (files) {
-      const filesAccept = []
-      for (let file of files) {
-        if (file.type.match('image/')) {
-          filesAccept.push(file)
+      // Check file type match accept attribute
+      if (this.accept !== '*') {
+        const filesAccept = []
+        for (let file of files) {
+          if (file.type.match('image/')) {
+            filesAccept.push(file)
+          }
         }
-      }
-      if (filesAccept.length) {
-        this.receiveFiles(filesAccept)
+        if (filesAccept.length) {
+          this.receiveFiles(filesAccept)
+        }
+      } else {
+        this.receiveFiles(files)
       }
     },
     receiveFiles (files) {
@@ -76,6 +81,11 @@ export default {
     },
     resetInput () {
       this.inputKey = Math.random()
+    }
+  },
+  destroyed () {
+    for (let file of this.files) {
+      URL.revokeObjectURL(file.url)
     }
   }
 }
@@ -101,6 +111,7 @@ export default {
     width 100px
     overflow hidden
     white-space nowrap
+    text-align center
 input.image-input
   opacity 0
   position absolute

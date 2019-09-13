@@ -51,7 +51,46 @@ export default {
     // Event between components: component 1
     finishLoading() {
       this.$root.$emit('finishLoading', data)
+    },
+    focusChanged (event) {
+      const el = event.target
+      // console.log(el)
+    },
+    // when custom checkbox components onCheck
+    check (index, payload) {
+      payload ? this.selectedRow.push(index) : this.selectedRow = this.selectedRow.filter(val => val!==index)
+      this.stocksFM[index].isChecked = payload
+    },
+  },
+  computed: {
+    // selectedRow = [] contains index of selected row
+    selectAll: {
+      get: function () {
+        return this.stocksFM ? this.selectedRow.length === this.stocksFM.length : false
+      },
+      set: function (value) {
+        const selected = []
+
+        if (value) {
+          for (let i in this.$refs.fmItem) {
+            selected.push(Number(i))
+            this.$refs.fmItem[i].isChecked = true
+          }
+        } else if (!value && this.selectedRow.length) {
+          for (let i of this.selectedRow.length) {
+            this.$refs.fmItem[i].isChecked = false
+          }
+        }
+
+        this.selectedRow = selected
+      }
     }
+  },
+  created() {
+    document.addEventListener('focusin', this.focusChanged)
+  },
+  beforeDestroy() {
+    document.removeEventListener('focusin', this.focusChanged)
   }
 };
 </script>

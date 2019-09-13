@@ -15,11 +15,11 @@ export default {
             selected[i] = this.getStock[i]
             this.$refs.stockItem[i].isChecked = true
           }
-        } else if (!value && Object.getOwnPropertyNames(this.selectedRow).length) {
+        } else if (!value && Object.keys(this.selectedRow).length) {
           for (let i in this.selectedRow) {
             this.$refs.stockItem[i].isChecked = false
           }
-          this.selectedRow = {}
+          selected = {}
         }
         this.selectedRow = selected
       }

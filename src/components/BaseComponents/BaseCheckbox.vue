@@ -10,6 +10,10 @@ div
 <script>
 export default {
   inheritAttrs: false,
+  model: {
+    prop: 'checked',
+    event: 'change'
+  },
 	props: {
 		label: {
 			type: String,

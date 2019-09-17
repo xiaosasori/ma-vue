@@ -4,13 +4,7 @@
     <BaseForm /> -->
     <Parent ref="parent" />
     <zoom-in />
-    <!-- Checkbox -->
-    <base-checkbox val="1" label="check1" v-model="check1"/>
-    <base-checkbox val="12" label="check2" v-model="check2"/>
-    <base-checkbox val="13" name="check3" label="check3" v-model="check3"/>
-    <base-checkbox val="14" name="check4" label="check4" v-model="check4"/>
-    <base-checkbox key="15" name="check5" label="check5" v-model="componentSelectedItems" />
-    {{componentSelectedItems}}
+    <zoomer />
     <table style="background-color:blue">
       <th>
         <td style="background-color:red" @contextmenu.prevent="$refs.ctx.open">
@@ -21,11 +15,6 @@
         </td>
       </th>
     </table>
-    <button @click="change1">1</button>
-    <button @click="change2">2</button>
-    <button @click="change3">3</button>
-    <button @click="change4">4</button>
-    <button @click="check">Check</button>
     <!-- <div class="div" @mousewheel.prevent="onMouseWheel"> -->
     <div class="div" ref="test" @mousewheel.prevent="onMouseWheel">
 
@@ -42,7 +31,6 @@
 
 <script>
 // @ is an alias to /src
-import BaseCheckbox from '@/components/BaseComponents/Checkbox'
 import FormMaterial from '@/components/FormMaterial'
 import FormTest from '@/components/FormTest'
 import ReadFile from '@/components/ReadFile.vue'
@@ -50,52 +38,12 @@ import BaseForm from '@/components/BaseForm'
 import Parent from '@/components/Parent'
 import ContextMenu from '@/components/contextmenu/context-menu'
 import ZoomIn from '@/components/Base/ZoomIn'
-import {changeTracker} from '@/services/utils'
+import Zoomer from '@/components/demo/zoomer/test'
+
 export default {
   name: 'home',
-  data: () => ({
-    check: [],
-    check1: false,
-    check2: false,
-    check3: false,
-    check4: false,
-    componentSelectedItems: [],
-    test: {
-      a: 1,
-      b: 1,
-      c: 1,
-      d: {
-        e: 1,
-        f: 2
-      }
-    }
-  }),
-  computed: {
-    checkAll: {
-      get: function () {
-        return this.check.length === 3 ? true : false
-      },
-      set: function (value) {
-        console.log('value', value)
-        if (value) {
-          for (let i of 4) {
-            let tmp = `check${i+1}`
-            this[tmp] = true
-            this.check.push(tmp)
-          }
-        } else if (!value) {
-          for (let i of 3) {
-            let tmp = `check${i+1}`
-            this[tmp] = false
-          }
-          this.check = []
-        }
-      }
-    }
-  },
-  components: {FormTest, ReadFile, BaseForm, Parent, ContextMenu, ZoomIn, BaseCheckbox},
+  components: {FormTest, ReadFile, BaseForm, Parent, ContextMenu, ZoomIn, Zoomer},
   mounted(){
-    changeTracker.track(this.test)
     this.$http.get('https://jsonplaceholder.typicode.com/todos/1').then(res => console.log('data', res.data))
     console.log(this.$refs.parent.$refs.child2)
     this.$refs.test.addEventListener('click', this.test)
@@ -111,22 +59,6 @@ export default {
     uploadImages(e){
       console.log(e)
     },
-    change1() {
-      this.test.a++
-      console.log(this.test)
-    },
-    change2() {
-      this.test.b++
-      console.log(this.test)
-    },
-    change3() {
-      this.test.c++
-      console.log(this.test)
-    },
-    change4() {
-      this.test.d.e++
-      console.log(this.test)
-    }
   }
 }
 </script>

@@ -1,6 +1,7 @@
 <template lang="pug">
   div
-    img(id="drawing" ref="img" width='555' height='320'
+    //- div.item(id="drawing" ref="img" )
+    img(id="drawing" ref="img" width='555' height='320' @mouseout="removeDrag"
       src="https://images.pexels.com/photos/556416/pexels-photo-556416.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=300&w=300"
     )
     
@@ -27,11 +28,11 @@ export default {
 		transparentSpaceFiller: null
   }),
   mounted() {
-    console.log('src', this.$refs.img.src)
-    console.log('style', this.$refs.img.style)
-    console.log('styleSize', this.$refs.img.style.backgroundSize)
-    console.log('naturalWidth', this.$refs.img.naturalWidth)
-    console.log('getBoundingClientRect', this.$refs.img.getBoundingClientRect())
+    // console.log('src', this.$refs.img.src)
+    // console.log('style', this.$refs.img.style)
+    // console.log('styleSize', this.$refs.img.style.backgroundSize)
+    // console.log('naturalWidth', this.$refs.img.naturalWidth)
+    // console.log('getBoundingClientRect', this.$refs.img.getBoundingClientRect())
     // img.removeEventListener('wheelzoom.destroy', destroy);
     this.$refs.img.removeEventListener('wheelzoom.reset', this.reset);
     this.$refs.img.removeEventListener('load', this.load);
@@ -85,7 +86,7 @@ export default {
 			}
 
       this.$refs.img.style.backgroundSize = this.bgWidth+'px '+this.bgHeight+'px';
-      console.log('backgroundSize', this.$refs.img.style.backgroundSize)
+      // console.log('backgroundSize', this.$refs.img.style.backgroundSize)
 			this.$refs.img.style.backgroundPosition = this.bgPosX+'px '+this.bgPosY+'px';
     },
     reset() {
@@ -95,7 +96,7 @@ export default {
 			this.updateBgStyle();
     },
     onwheel (e) {
-      console.log(e)
+      // console.log(e)
       let deltaY = 0;
       e.preventDefault();
 			if (e.deltaY) { // FireFox 17+ (IE9+, Chrome 31+?)
@@ -190,3 +191,5 @@ export default {
   }
 }
 </script>
+<style scoped>
+</style>

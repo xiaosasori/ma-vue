@@ -34,12 +34,12 @@ export default {
     // console.log('naturalWidth', this.$refs.img.naturalWidth)
     // console.log('getBoundingClientRect', this.$refs.img.getBoundingClientRect())
     // img.removeEventListener('wheelzoom.destroy', destroy);
-    this.$refs.img.removeEventListener('wheelzoom.reset', this.reset);
-    this.$refs.img.removeEventListener('load', this.load);
-    this.$refs.img.removeEventListener('mouseup', this.removeDrag);
-    this.$refs.img.removeEventListener('mousemove', this.drag);
-    this.$refs.img.removeEventListener('mousedown', this.draggable);
-    this.$refs.img.removeEventListener('wheel', this.onwheel);
+    // this.$refs.img.removeEventListener('wheelzoom.reset', this.reset);
+    // this.$refs.img.removeEventListener('load', this.load);
+    // this.$refs.img.removeEventListener('mouseup', this.removeDrag);
+    // this.$refs.img.removeEventListener('mousemove', this.drag);
+    // this.$refs.img.removeEventListener('mousedown', this.draggable);
+    // this.$refs.img.removeEventListener('wheel', this.onwheel);
     const originalProperties = {
       backgroundImage: this.$refs.img.style.backgroundImage,
       backgroundRepeat: this.$refs.img.style.backgroundRepeat,
@@ -59,9 +59,9 @@ export default {
     
     this.settings = this.defaults
 
-		if (this.$refs.img.complete) {
-			this.load();
-		}
+		// if (this.$refs.img.complete) {
+		// 	this.load();
+		// }
 
 		this.$refs.img.addEventListener('load', this.load);
   },
@@ -180,7 +180,6 @@ export default {
 
 			this.$refs.img.style.backgroundSize = this.bgWidth+'px '+this.bgHeight+'px';
       this.$refs.img.style.backgroundPosition = this.bgPosX+'px '+this.bgPosY+'px';
-      this.$refs.img.addEventListener('wheelzoom.reset', this.reset);
 
 			this.$refs.img.addEventListener('wheel', this.onwheel);
 			this.$refs.img.addEventListener('mousedown', this.draggable);

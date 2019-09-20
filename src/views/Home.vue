@@ -1,31 +1,15 @@
 <template>
-  <div @contexmenu.prevent="close" class="home">
+  <div class="home">
     <!-- <ReadFile />
     <BaseForm /> -->
     <Parent ref="parent" />
     <zoom-in />
     <zoomer />
-    <table style="background-color:blue">
-      <th>
-        <td style="background-color:red" @contextmenu.prevent="$refs.ctx.open">
-          Hello
-        </td>
-        <td style="background-color:green" @contextmenu.prevent="$refs.ctx.open">
-          td2
-        </td>
-      </th>
-    </table>
     <!-- <div class="div" @mousewheel.prevent="onMouseWheel"> -->
     <div class="div" ref="test" @mousewheel.prevent="onMouseWheel">
 
     </div>
-    <context-menu ref="ctx">
-      <ul>
-        <li>Menu 1</li>
-        <li>Menu 2</li>
-        <li>menu 3</li>
-      </ul>
-    </context-menu>
+    <context />
   </div>
 </template>
 
@@ -36,13 +20,13 @@ import FormTest from '@/components/FormTest'
 import ReadFile from '@/components/ReadFile.vue'
 import BaseForm from '@/components/BaseForm'
 import Parent from '@/components/Parent'
-import ContextMenu from '@/components/contextmenu/context-menu'
 import ZoomIn from '@/components/Base/ZoomIn'
 import Zoomer from '@/components/demo/zoomer/test'
+import context from '@/components/contextmenu/demo'
 
 export default {
   name: 'home',
-  components: {FormTest, ReadFile, BaseForm, Parent, ContextMenu, ZoomIn, Zoomer},
+  components: {context, FormTest, ReadFile, BaseForm, Parent, ZoomIn, Zoomer},
   mounted(){
     this.$http.get('https://jsonplaceholder.typicode.com/todos/1').then(res => console.log('data', res.data))
     console.log(this.$refs.parent.$refs.child2)
@@ -63,28 +47,10 @@ export default {
 }
 </script>
 <style scoped>
-.dropper {
-  height: 30vh;
-  border: 2px dashed black;
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-.dropper:hover {
-  background-color: #eee;
-}
 input {
   width: 100%;
   height: 30vh;
   position: absolute;
   opacity: 0;
-}
-.div {
-  width: 200px;
-  height: 200px;
-  margin: 0 auto;
-  background-color: green;
 }
 </style>

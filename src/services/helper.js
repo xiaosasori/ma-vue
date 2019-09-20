@@ -6,3 +6,7 @@ export function nthIndex (str, key, n) {
   }
   return i
 }
+
+export function pluck (arr, prop) {
+  return [...new Set(arr.map(r => r[prop]))]
+}

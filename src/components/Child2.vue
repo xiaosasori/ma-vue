@@ -2,15 +2,19 @@
   <div v-on="$listeners" @click="bb">
     <p @click.stop="bubble">Bubble</p>
     <button @click="test">Click</button>
+      Child 2 test: {{testMix}}
+        <button @click="testUp">Up Child</button>
   </div>
 </template>
 
 <script>
-import { setTimeout } from "timers";
+import { setTimeout } from "timers"
+import MixinTest from '@/mixins/test'
 export default {
   data: () => ({
     loading: false
   }),
+  mixins: [MixinTest],
   methods: {
     bb() {
       console.log("bb");

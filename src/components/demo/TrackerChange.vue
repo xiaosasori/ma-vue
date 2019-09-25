@@ -23,7 +23,8 @@ export default {
   }),
   methods: {
     check () {
-      console.log(changeTracker.changedProps(this.test))
+      console.log('changedProps', changeTracker.changedProps(this.test))
+      console.log('changed', changeTracker.changed(this.test))
     },
     change1() {
       this.test.a++

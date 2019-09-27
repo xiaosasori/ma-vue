@@ -31,9 +31,12 @@ export default {
   name: 'home',
   components: {TrackerChangeVue, resize, context, FormTest, ReadFile, BaseForm, Parent, ZoomIn, Zoomer},
   mounted(){
-    this.$http.get('https://jsonplaceholder.typicode.com/todos/1').then(res => console.log('data', res.data))
-    console.log(this.$refs.parent.$refs.child2)
-    this.$refs.test.addEventListener('click', this.test)
+    // this.$http.get('https://jsonplaceholder.typicode.com/todos/1').then(res => console.log('data', res.data))
+    // console.log(this.$refs.parent.$refs.child2)
+    // this.$refs.test.addEventListener('click', this.test)
+    this.$once('visible', () => {
+      console.log('visible')
+    })
   },
   methods: {
     onMouseWheel(e) {

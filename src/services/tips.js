@@ -156,11 +156,14 @@ const makeSmoothie2 = async() => {
 const o1 = {name: 1, age: 2, location: {address: 'NY'}}
 const o2 = {...o1}
 const o3 = JSON.parse(JSON.stringify(o1))
+const o4 = {}
+Object.assign(o4, o1)
 
 o1.name = 3
 o1.location.address = 'LA'
 console.log(o2)
 console.log(o3)
+console.log(o4)
 
 // remove duplicates from an array
 const dupArr = [9,10,1,2,3,1,2,6,8,4,2]

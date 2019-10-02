@@ -169,3 +169,5 @@ console.log(o4)
 const dupArr = [9,10,1,2,3,1,2,6,8,4,2]
 const noDup = [...new Set(dupArr)]
 console.log(noDup)
+// find lastIndex
+const lastIndex = this.getStock.map(stock => !!stock.id).lastIndexOf(true)

@@ -7,6 +7,12 @@ export function nthIndex (str, key, n) {
   return i
 }
 
-export function pluck (arr, prop) {
-  return [...new Set(arr.map(r => r[prop]))]
+export function preventNonNumericalInput (e) {
+  e = e || window.event
+  let charCode = (typeof e.which === 'undefined') ? e.keyCode : e.which
+  let charStr = String.fromCharCode(charCode)
+
+  if (!charStr.match(/^[0-9]+$/)) {
+    e.preventDefault()
+  }
 }

@@ -1,11 +1,8 @@
 <template>
   <div class="home">
-    <!-- <ReadFile />
-    <BaseForm /> -->
     <Parent ref="parent" />
     <zoom-in />
     <zoomer />
-    <!-- <div class="div" @mousewheel.prevent="onMouseWheel"> -->
     <div class="div" ref="test" @mousewheel.prevent="onMouseWheel">
     </div>
     <resize />
@@ -29,7 +26,7 @@ import TrackerChangeVue from '@/components/demo/TrackerChange'
 
 export default {
   name: 'home',
-  components: {TrackerChangeVue, resize, context, FormTest, ReadFile, BaseForm, Parent, ZoomIn, Zoomer},
+  components: {Blooger, TrackerChangeVue, resize, context, FormTest, ReadFile, BaseForm, Parent, ZoomIn, Zoomer},
   mounted(){
     // this.$http.get('https://jsonplaceholder.typicode.com/todos/1').then(res => console.log('data', res.data))
     // console.log(this.$refs.parent.$refs.child2)

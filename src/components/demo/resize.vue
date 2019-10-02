@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(:resizexc="resizeTest()")
+  div(:resize="resizeTest('zxc')")
     | {{resi}}
 </template>
 
@@ -8,7 +8,7 @@ export default {
   data: () => ({
     resi: true
   }),
-  mounted: function () {
+  created: function () {
     console.log('mounted resize')
     window.addEventListener('resize', this.handleResize)
   },

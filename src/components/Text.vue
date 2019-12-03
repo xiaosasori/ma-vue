@@ -78,6 +78,11 @@ export default {
       payload ? this.selectedRow.push(index) : this.selectedRow = this.selectedRow.filter(val => val!==index)
       this.stocksFM[index].isChecked = payload
     },
+    async scrollTo () {
+      await this.$nextTick()
+      let container = document.querySelector('.table-wrapper')
+      container.scrollTo({top: container.scrollHeight, behavior: 'smooth'})
+    }
   },
   computed: {
     // selectedRow = [] contains index of selected row

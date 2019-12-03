@@ -1,5 +1,6 @@
 <template lang="pug">
-  div(:resize="resizeTest('zxc')")
+  div(:resize="handleResize('zxc')")
+    h3 Resize test
     | {{resi}}
 </template>
 
@@ -9,17 +10,17 @@ export default {
     resi: true
   }),
   created: function () {
-    console.log('mounted resize')
     window.addEventListener('resize', this.handleResize)
   },
   beforeDestroy: function () {
     window.removeEventListener('resize', this.handleResize)
   },
   methods: {
-    resizeTest () {
-      console.log('resize test')
+    resizeTest (param) {
+      console.log('resize test' + param)
     },
     handleResize (param) {
+      console.log('handleResize' + param)
       let windowHeight = document.documentElement.clientHeight
       console.log(param + ' window height: ' + windowHeight)
       if (document.getElementById('table-stock-info') && document.getElementById('header-dialog')) {

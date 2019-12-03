@@ -146,9 +146,9 @@ const makeSmoothie = async() => {
  *  so it'll be faster
  */
 const makeSmoothie2 = async() => {
-  const strawBerry = await getFruit('s')
-  const grapes = await getFruit('g')
-  const smoothie = await Promise.all([strawberry, grapes])
+  const strawBerry = getFruit('s')
+  const grapes = getFruit('g')
+  const smoothie = await Promise.all([strawBerry, grapes])
   return smoothie
 }
 
@@ -171,3 +171,60 @@ const noDup = [...new Set(dupArr)]
 console.log(noDup)
 // find lastIndex
 const lastIndex = this.getStock.map(stock => !!stock.id).lastIndexOf(true)
+
+// split by duplicate values
+const input = [
+  {index: 0, value: 3},
+  {index: 0, value: 3},
+  {index: 0, value: 3},
+  {index: 1, value: 3},
+  {index: 1, value: 3},
+  {index: 2, value: 3},
+  {index: 2, value: 3},
+  {index: 0, value: 3}
+];
+
+let obj = input.reduce((res, curr) =>
+{
+    if (res[curr.index])
+        res[curr.index].push(curr);
+    else
+        Object.assign(res, {[curr.index]: [curr]});
+
+    return res;
+}, {});
+
+console.log(obj);
+// separate the objects by streaks that have equal indexes you can do this
+
+const input = [
+  {index: 0, value: 3},
+  {index: 0, value: 3},
+  {index: 0, value: 3},
+  {index: 1, value: 3},
+  {index: 1, value: 3},
+  {index: 2, value: 3},
+  {index: 2, value: 3},
+  {index: 0, value: 3},
+  {index: 0, value: 3},
+  {index: 0, value: 3},
+  {index: 2, value: 3},
+  {index: 2, value: 3}
+];
+
+let obj = input.reduce((res, curr) =>
+{
+    if (curr.index === res.last)
+    {
+        res.r[res.idx - 1].push(curr);
+        return res;
+    }
+
+    Object.assign(res.r, {[res.idx]: [curr]});
+    res.last = curr.index;
+    res.idx++;
+    return res;
+
+}, {r: {}, idx: 0, last: null});
+
+console.log(obj.r);

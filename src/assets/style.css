@@ -3,3 +3,7 @@
   overflow: hidden;
   white-space: nowrap;
 }
+.test {
+  background-clip: padding-box;
+  table-layout: fixed;
+}

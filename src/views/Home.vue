@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Parent ref="parent" />
+    <!-- <Parent ref="parent" />
     <zoom-in />
     <zoomer />
     <div class="div" ref="test" @mousewheel.prevent="onMouseWheel">
@@ -8,11 +8,16 @@
     <resize />
     <TrackerChangeVue/>
     <context />
+    <functionalv />
+    <button @click="test=0">Plus</button> -->
+    <div style="height: 100vh;background-color: pink"></div>
+    <LazyImage width="1260" height="750" src="https://images.pexels.com/photos/33109/fall-autumn-red-season.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260%202520w" />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import functionalv from '@/components/demo/functional/index.vue'
 import FormMaterial from '@/components/FormMaterial'
 import FormTest from '@/components/FormTest'
 import ReadFile from '@/components/ReadFile.vue'
@@ -23,10 +28,21 @@ import Zoomer from '@/components/demo/zoomer/test'
 import context from '@/components/contextmenu/demo'
 import resize from '@/components/demo/resize'
 import TrackerChangeVue from '@/components/demo/TrackerChange'
+import LazyImage from '@/components/demo/LazyImage'
 
 export default {
+  data: () => ({
+    test: 1
+  }),
   name: 'home',
-  components: {Blooger, TrackerChangeVue, resize, context, FormTest, ReadFile, BaseForm, Parent, ZoomIn, Zoomer},
+  watch: {
+    test: {
+      handler (val) {
+        console.log('handler')
+      }
+    }
+  },
+  components: {functionalv, TrackerChangeVue, resize, context, FormTest, ReadFile, BaseForm, Parent, ZoomIn, Zoomer, LazyImage},
   mounted(){
     // this.$http.get('https://jsonplaceholder.typicode.com/todos/1').then(res => console.log('data', res.data))
     // console.log(this.$refs.parent.$refs.child2)

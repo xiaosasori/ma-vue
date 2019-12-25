@@ -5,14 +5,18 @@
       :src="dataUrl"
       v-bind="$attrs"
     />
+    <BaseForm />
+    <button @click="counter++" >{{counter}}</button>
   </div>
 </template>
 
 <script>
+import BaseForm from '@/components/BaseForm'
 export default {
+  components: {BaseForm},
   inheritAttrs: false,
   data: () => ({
-    
+    counter: 0
   }),
   props: {
     src: {

@@ -10,8 +10,9 @@
     <context />
     <functionalv />
     <button @click="test=0">Plus</button> -->
-    <div style="height: 100vh;background-color: pink"></div>
-    <LazyImage width="1260" height="750" src="https://images.pexels.com/photos/33109/fall-autumn-red-season.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260%202520w" />
+    <!-- <div v-click-outside="log" style="height: 100vh;background-color: pink"></div>
+    <LazyImage width="1260" height="750" src="https://images.pexels.com/photos/33109/fall-autumn-red-season.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260%202520w" /> -->
+    <TablePage />
   </div>
 </template>
 
@@ -29,11 +30,27 @@ import context from '@/components/contextmenu/demo'
 import resize from '@/components/demo/resize'
 import TrackerChangeVue from '@/components/demo/TrackerChange'
 import LazyImage from '@/components/demo/LazyImage'
-
+import TablePage from '@/components/demo/table/index'
 export default {
   data: () => ({
     test: 1
   }),
+  directives: {
+    'click-outside': {
+      bind (el, binding) {
+        el.__ClickOutsideHandler__ = event => {
+          // check if event's target is the el or contained by el
+          if (!(el === event.target || el.contains(event.target))) {
+            binding.value(event)
+          }
+        }
+        document.body.addEventListener('click', el.__ClickOutsideHandler__)
+      },
+      unbind (el) {
+        document.body.removeEventListener('click', el.__ClickOutsideHandler__)
+      }
+    }
+  },
   name: 'home',
   watch: {
     test: {
@@ -42,7 +59,7 @@ export default {
       }
     }
   },
-  components: {functionalv, TrackerChangeVue, resize, context, FormTest, ReadFile, BaseForm, Parent, ZoomIn, Zoomer, LazyImage},
+  components: {functionalv, TrackerChangeVue, resize, context, FormTest, ReadFile, BaseForm, Parent, ZoomIn, Zoomer, LazyImage, TablePage},
   mounted(){
     // this.$http.get('https://jsonplaceholder.typicode.com/todos/1').then(res => console.log('data', res.data))
     // console.log(this.$refs.parent.$refs.child2)
@@ -52,6 +69,9 @@ export default {
     })
   },
   methods: {
+    log () {
+      console.log('log')
+    },
     onMouseWheel(e) {
       console.log(e)
     },

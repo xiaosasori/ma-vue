@@ -71,8 +71,9 @@ function ready (callback) {
 
 function replace () {
   let text = 'This is very awesome'
-  text = text.replace('very', '$& $&')
-  console.log(text)
+  console.log(text.replace('very', '$& $&'))
+  console.log(text.replace('very', '$`'))
+  console.log(text.replace('very', '$\''))
   let name = 'Simple JS'
   const re = /(\w+)(\s)(\w+)/
   name = name.replace(re, '0:$0 1:$1 2:$2 3:$3')
@@ -228,3 +229,49 @@ let obj = input.reduce((res, curr) =>
 }, {r: {}, idx: 0, last: null});
 
 console.log(obj.r);
+
+// Memoize dec/12th http://bit.ly/2R5g1Hb
+let output = document.querySelector('.output');
+
+const cache = {};
+function memoize(method) {
+  return async function () {
+    let args = JSON.stringify(arguments);
+    cache[args] = cache[args] || method.apply(this, arguments);
+    return cache[args];
+  }
+}
+
+const getUser = async (userId) => {
+  const response = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`);
+  const userData = await response.json();
+  return userData;
+}
+
+const userIds = [1, 1, 2, 2, 3, 4];
+
+userIds.forEach(async userId => {
+  let memoizedgetUser = memoize(getUser);
+  const userData = await memoizedgetUser(userId)
+  output.innerHTML += `user: ${userData.name} <br/><br/>`
+})
+
+// JSON.stringify Oct/20th
+const user = {username: 'Ajax', email: 'simple@js.com', password: 'hashme'}
+const userString = JSON.stringify(user, ['username', 'email'])
+// Output: {"username":"Ajax","email":"simple@js.com"}
+
+// JSON.stringify use when object has Sets, WeakSets, Maps, WeakMaps Oct/27th
+const user = {
+  name: 'Eren',
+  friends: new Set(['Mikasa', 'Armin', 'Levi'])
+}
+console.log(JSON.stringify(user)) // {"username":"Ajax","email":"simple@js.com"}
+const properString = JSON.stringify(user, (key, value) => {
+  return value instanceof Set ? [...value] : value
+}) // {"name":"Eren","friends":["Mikasa","Armin","Levi"]}
+
+// Dynamic import()
+import('module/path').then(module => {// Do something})
+// OR
+let module = await import('module/path')

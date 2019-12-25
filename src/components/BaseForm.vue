@@ -28,6 +28,9 @@
 <script>
 import {required, minLength, sameAs, email} from 'vuelidate/lib/validators'
 export default {
+  updated () {
+    console.log('updated')
+  },
   data: () => ({
     name: null,
     email: null,

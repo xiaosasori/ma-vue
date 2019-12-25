@@ -82,6 +82,34 @@ export default {
       await this.$nextTick()
       let container = document.querySelector('.table-wrapper')
       container.scrollTo({top: container.scrollHeight, behavior: 'smooth'})
+    },
+    // wait until element render
+    async calcDropdownInViewportVertical() {
+      await this.$nextTick()
+      const dom = await this.checkElement('.menuable__content__active.menu-combobox')
+      const rect = dom.getBoundingClientRect()
+      this.isListInViewportVertically = (
+        rect.top >= 0 &&
+        rect.top >= this.$refs['input-combobox'].getBoundingClientRect().bottom &&
+        rect.bottom <= (window.innerHeight - 36 - 37 ||
+          document.documentElement.clientHeight - 36 - 37)
+      )
+      if (!this.isListInViewportVertically && rect.height === 300) {
+        this.y = rect.top - (rect.top - this.$refs['input-combobox'].getBoundingClientRect().top) - 300 - 8
+      } else if (!this.isListInViewportVertically && rect.height < 300) {
+        this.y = this.$refs['input-combobox'].getBoundingClientRect().top - rect.height - 10
+      }
+    },
+    async checkElement(selector) {
+      while (document.querySelector(selector) === null || document.querySelector(selector).getBoundingClientRect().x === 0) {
+        await new Promise(resolve => window.requestAnimationFrame(resolve))
+      }
+      return document.querySelector(selector)
+    },
+    checkIsFocus () {
+      if (this.$refs['input-combobox'] === document.activeElement) {
+        // do something
+      }
     }
   },
   computed: {
@@ -114,5 +142,7 @@ export default {
   beforeDestroy() {
     document.removeEventListener('focusin', this.focusChanged)
   }
+  // @focusout
+  // tr:focus-within
 };
 </script>

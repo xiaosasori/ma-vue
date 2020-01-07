@@ -9,9 +9,27 @@
     <TrackerChangeVue/>
     <context />
     <functionalv />
-    <button @click="test=0">Plus</button> -->
-    <div style="height: 100vh;background-color: pink"></div>
-    <LazyImage width="1260" height="750" src="https://images.pexels.com/photos/33109/fall-autumn-red-season.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260%202520w" />
+    <button @click="test=0">Plus</button>-->
+    <MTable />
+    <!-- <BaseAutocomplete />
+    <div style="height: 100vh;background-color: pink"></div> -->
+    <!-- <VImg
+      :src="`https://images.unsplash.com/photo-1455656678494-4d1b5f3e7ad4?w=1080`"
+      width="900"
+      height="600"
+      placeholder="https://images.unsplash.com/photo-1455656678494-4d1b5f3e7ad4?w=30"
+      srcset="https://images.unsplash.com/photo-1455656678494-4d1b5f3e7ad4?w=320 320w, https://images.unsplash.com/photo-1455656678494-4d1b5f3e7ad4?w=480 480w, https://images.unsplash.com/photo-1455656678494-4d1b5f3e7ad4?w=800 800w"
+      sizes="(max-width: 320px) 280px,
+      (max-width: 480px) 440px,
+      (max-width: 800px) 760px,
+      1080px"
+      alt="Beautiful forest"
+    />-->
+    <!-- <LazyImage
+      width="1260"
+      height="750"
+      src="https://images.pexels.com/photos/33109/fall-autumn-red-season.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260%202520w"
+    />-->
   </div>
 </template>
 
@@ -29,6 +47,7 @@ import context from '@/components/contextmenu/demo'
 import resize from '@/components/demo/resize'
 import TrackerChangeVue from '@/components/demo/TrackerChange'
 import LazyImage from '@/components/demo/LazyImage'
+import MTable from '@/components/demo/MTable'
 
 export default {
   data: () => ({
@@ -42,7 +61,7 @@ export default {
       }
     }
   },
-  components: {functionalv, TrackerChangeVue, resize, context, FormTest, ReadFile, BaseForm, Parent, ZoomIn, Zoomer, LazyImage},
+  components: {MTable, functionalv, TrackerChangeVue, resize, context, FormTest, ReadFile, BaseForm, Parent, ZoomIn, Zoomer, LazyImage},
   mounted(){
     // this.$http.get('https://jsonplaceholder.typicode.com/todos/1').then(res => console.log('data', res.data))
     // console.log(this.$refs.parent.$refs.child2)

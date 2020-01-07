@@ -1,16 +1,14 @@
 <template>
   <div class="app-img">
-    <img
-      :alt="$attrs.alt || ''"
-      :src="dataUrl"
-      v-bind="$attrs"
-    />
+    <div v-if="dataUrl" :style="{ background }" class="app-img__placeholder">
+      <img :src="placeholder || dataUrl" alt v-bind="$attrs" />
+    </div>
+    <img :alt="$attrs.alt || ''" :src="dataUrl" v-bind="$attrs" class="app-img__img" />
   </div>
 </template>
 
 <script>
 export default {
-  inheritAttrs: false,
   data: () => ({
     
   }),
@@ -18,11 +16,15 @@ export default {
     src: {
       type: String,
       required: true
-    }
+    },
+    placeholder: String,
+    background: String,
+    height:[String, Number]
   },
   computed: {
     dataUrl () {
       const {width, height} = this.$attrs
+      console.log(this)
       if(!width || !height) return ''
 
       // create a tiny png with matching aspect ratio as img
@@ -32,16 +34,22 @@ export default {
       canvas.height = height
       // canvas.width = w
       // canvas.height = (height / width) * w
-
       return canvas.toDataURL()
     }
   },
   mounted() {
     const { src, $el } = this
-
+    console.log(this)
     const observer = new IntersectionObserver(([entry]) => {
-      const img = $el.querySelector("img")
+      const img = $el.querySelector(`.app-img__img`)
+      const placeholder = $el.querySelector(`.app-img__placeholder`)
 
+      img.onload = function() {
+        delete img.onload
+        if (placeholder) {
+          placeholder.remove()
+        }
+      }
       if (entry.isIntersecting) {
         // Element is in viewport
         img.src = src
@@ -49,7 +57,6 @@ export default {
       }
     })
     observer.observe($el)
-
     this.$once("hook:beforeDestroy", () => {
       observer.disconnect()
     })
@@ -60,5 +67,10 @@ export default {
 <style>
 .app-img {
   display: inline-block;
+  position: relative;
+}
+
+.app-img__placeholder {
+  position: absolute;
 }
 </style>

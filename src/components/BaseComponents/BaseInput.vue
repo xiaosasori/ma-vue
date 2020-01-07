@@ -5,7 +5,6 @@
 			v-bind="$attrs"
 			:value="value"
 			@input="$emit('input', $event.target.value)" type="text")
-		button(@click="$emit('compClick')") Change
 </template>
 
 <script>

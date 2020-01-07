@@ -62,6 +62,8 @@ requireComponent.keys().forEach(fileName => {
 // directive
 import color from './directives/color'
 // Vue.directive(color)
+import VueVirtualScroller from "vue-virtual-scroller"
+Vue.use(VueVirtualScroller)
 Vue.directive('color', function (el, binding) {
   const modifiers = binding.modifiers
   if (modifiers.underline) el.style.textDecoration = 'underline'

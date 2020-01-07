@@ -1,16 +1,18 @@
 <template>
   <div class="app-img">
-    <div v-if="dataUrl" :style="{ background }" class="app-img__placeholder">
-      <img :src="placeholder || dataUrl" alt v-bind="$attrs" />
-    </div>
-    <img :alt="$attrs.alt || ''" :src="dataUrl" v-bind="$attrs" class="app-img__img" />
+    <img :alt="$attrs.alt || ''" :src="dataUrl" v-bind="$attrs" />
+    <BaseForm />
+    <button @click="counter++">{{counter}}</button>
   </div>
 </template>
 
 <script>
+import BaseForm from '@/components/BaseForm'
 export default {
+  components: {BaseForm},
+  inheritAttrs: false,
   data: () => ({
-    
+    counter: 0
   }),
   props: {
     src: {

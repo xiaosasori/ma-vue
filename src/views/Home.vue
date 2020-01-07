@@ -12,7 +12,7 @@
     <button @click="test=0">Plus</button>-->
     <MTable />
     <!-- <BaseAutocomplete />
-    <div style="height: 100vh;background-color: pink"></div> -->
+    <div style="height: 100vh;background-color: pink"></div>-->
     <!-- <VImg
       :src="`https://images.unsplash.com/photo-1455656678494-4d1b5f3e7ad4?w=1080`"
       width="900"
@@ -49,10 +49,27 @@ import TrackerChangeVue from '@/components/demo/TrackerChange'
 import LazyImage from '@/components/demo/LazyImage'
 import MTable from '@/components/demo/MTable'
 
+import TablePage from '@/components/demo/table/index'
 export default {
   data: () => ({
     test: 1
   }),
+  directives: {
+    'click-outside': {
+      bind (el, binding) {
+        el.__ClickOutsideHandler__ = event => {
+          // check if event's target is the el or contained by el
+          if (!(el === event.target || el.contains(event.target))) {
+            binding.value(event)
+          }
+        }
+        document.body.addEventListener('click', el.__ClickOutsideHandler__)
+      },
+      unbind (el) {
+        document.body.removeEventListener('click', el.__ClickOutsideHandler__)
+      }
+    }
+  },
   name: 'home',
   watch: {
     test: {
@@ -71,6 +88,9 @@ export default {
     })
   },
   methods: {
+    log () {
+      console.log('log')
+    },
     onMouseWheel(e) {
       console.log(e)
     },

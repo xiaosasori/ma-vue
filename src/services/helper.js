@@ -16,3 +16,21 @@ export function preventNonNumericalInput (e) {
     e.preventDefault()
   }
 }
+
+export function arrayContainsArray (superset, subset) {
+  if (subset.length === 0) {
+    return false
+  }
+  return subset.every(function (value) {
+    return (superset.indexOf(value) >= 0)
+  })
+}
+
+export function isObjectsEqualWithProps (o1, o2, props) {
+  for (let prop of props) {
+    if (o1[prop] !== o2[prop]) {
+      return false
+    }
+  }
+  return true
+}

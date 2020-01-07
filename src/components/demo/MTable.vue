@@ -3,6 +3,7 @@
     <table>
       <thead>
         <tr>
+          <th>Index</th>
           <th>ID</th>
           <th>
             <input type="checkbox" />
@@ -19,6 +20,7 @@
           v-for="(item, $index) in data"
           :key="item.id"
           :item="item"
+          :items="data"
         />
       </tbody>
     </table>

@@ -1,5 +1,6 @@
 <template>
   <tr>
+    <td>{{index}}</td>
     <td>{{item.id}}</td>
     <td>{{item.first_name}}</td>
     <td>{{item.last_name}}</td>
@@ -11,7 +12,13 @@
 <script>
 export default {
   props: {
-    item: Object
+    item: Object,
+    items: Array
+  },
+  computed: {
+    index () {
+      return this.items.indexOf(this.item)
+    }
   }
 }
 </script>
